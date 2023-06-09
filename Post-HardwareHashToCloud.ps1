@@ -2,6 +2,9 @@
 # Author: C Doyle
 # Date: 2023, June 07
 # Description: Create a hardware hash for device and send to cloud storage.
+#
+# Version 2 - 2023 Jun 08 - Added -Force to download commands so script doesn't get stopped by user prompt.
+# Version 3 - 2023 Jun 09 - Added hostname collection to easily identify the device quickly.
 #------------------------
 
 #Insert URL for PowerAutomate Flow here:
@@ -52,13 +55,16 @@ $deviceSerialNumber = $fields[0]
 $windowsProductID = $fields[1]
 $hardwareHash = $fields[2]
 
+$devHostname = hostname
+
 
 # Define the body of the POST request
 $body = @{
     "serialNumber" = $deviceSerialNumber
     "productKey" = $windowsProductID
     "hardwareHash" = $hardwareHash
-    "other" = "Sent from powershell script."
+    "devHostname" = $devHostname
+    "other" = "Intune test"
 } | ConvertTo-Json
 
 
