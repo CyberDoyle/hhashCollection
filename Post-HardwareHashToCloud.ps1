@@ -6,6 +6,7 @@
 # Version 2 - 2023 Jun 08 - Added -Force to download commands so script doesn't get stopped by user prompt.
 # Version 3.0 - 2023 Jun 09 - Added hostname collection to easily identify the device quickly.
 # Version 3.1 - 2023 Jun 09 - Added comments to script to better describe the functions of the code blocks.
+# Version 3.2 - 2023 Jun 20 - Added -UseBasicParsing perameter to http request to avoid using IE as a dependency. (Which was creating an error when running from OOBE)
 #------------------------
 
 #Insert URL for PowerAutomate Flow here:
@@ -75,7 +76,7 @@ $body = @{
 
 
 # Send the POST request
-$response = Invoke-WebRequest -Uri $url -Method Post -Body $body -ContentType "application/json"
+$response = Invoke-WebRequest -UseBasicParsing -Uri $url -Method Post -Body $body -ContentType "application/json"
 
 # Check the status code
 if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 300) {
