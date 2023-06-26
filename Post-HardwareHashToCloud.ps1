@@ -71,7 +71,7 @@ $body = @{
     "productKey" = $windowsProductID
     "hardwareHash" = $hardwareHash
     "devHostname" = $devHostname
-    "other" = "Intune test"
+    "other" = "run from Github script"
 } | ConvertTo-Json
 
 
